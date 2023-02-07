@@ -46,8 +46,6 @@ const getSessionFromDB = async (type) => {
     if (!queryResult) {
         return undefined;
     }
-    console.log('-----debug-------');
-    console.log(queryResult);
     const encryptedSessionStr = queryResult?.session;
     return (0, exports.decryptSession)(encryptedSessionStr);
 };
