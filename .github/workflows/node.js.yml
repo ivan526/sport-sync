@@ -7,6 +7,7 @@ on:
   schedule:
     # 每10分钟检查一次
     - cron: '0 0 * * *'
+  workflow_dispatch:
 env:
   # please change to your own config.
   GARMIN_USERNAME: ${{ secrets.GARMIN_USERNAME }}
