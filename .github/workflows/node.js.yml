@@ -4,7 +4,6 @@
 name: Node.js CI
 
 on:
-  workflow_dispatch:
   schedule:
     # 每10分钟检查一次
     - cron: '0 0 * * *'
