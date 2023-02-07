@@ -8,6 +8,12 @@ on:
   schedule:
     # 每10分钟检查一次
     - cron: '0 0 * * *'
+env:
+  # please change to your own config.
+  GARMIN_USERNAME: ${{ secrets.GARMIN_USERNAME }}
+  GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+  GARMIN_GLOBAL_USERNAME: ${{ secrets.GARMIN_GLOBAL_USERNAME }}
+  GARMIN_GLOBAL_PASSWORD: ${{ secrets.GARMIN_GLOBAL_PASSWORD }}
 
 jobs:
   build:
