@@ -18,9 +18,10 @@ export const initDB = async () => {
 };
 
 export const getDB = async () => {  
-    return new sqlite3.Database('../db/garmin.db', err => {
+    return await new sqlite3.Database('../db/garmin.db', err => {
       if (err !== null) console.log(err);  // 输出错误信息
     });
+
 };
 
 export const saveSessionToDB = async (type: 'CN' | 'GLOBAL', session: Record<string, any>) => {
