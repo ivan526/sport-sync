@@ -7,6 +7,7 @@ on:
   schedule:
     # 每10分钟检查一次
     - cron: '0 0 * * *'
+  workflow_dispatch:
 env:
   # please change to your own config.
   GARMIN_USERNAME: ${{ secrets.GARMIN_USERNAME }}
@@ -33,6 +34,8 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
+    - name: Build
+      run: npm run build
     - run: npm run sync_cn
     - name: Commit files
       uses: stefanzweifel/git-auto-commit-action@v4
