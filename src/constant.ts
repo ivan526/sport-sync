@@ -5,16 +5,16 @@ export const FILE_SUFFIX = {
 };
 export const DOWNLOAD_DIR = './garmin_fit_files';
 export const DB_FILE_PATH = './db/garmin.db';
-export const AESKEY_DEFAULT = 'LSKDAJALSD';
+export const AESKEY_DEFAULT = 'aaaaabbbbbcccc';
 /**
  * GARMIN ACCOUNT
  */
 // 佳明中国区账号及密码
-export const GARMIN_USERNAME_DEFAULT = 'yu.ivan@gmail.com';
-export const GARMIN_PASSWORD_DEFAULT = 'Huawei123';
+export const GARMIN_USERNAME_DEFAULT = '';
+export const GARMIN_PASSWORD_DEFAULT = '';
 // 佳明国际区区账号及密码
-export const GARMIN_GLOBAL_USERNAME_DEFAULT = 'yu.ivan@gmail.com';
-export const GARMIN_GLOBAL_PASSWORD_DEFAULT = 'Huawei123';
+export const GARMIN_GLOBAL_USERNAME_DEFAULT = '';
+export const GARMIN_GLOBAL_PASSWORD_DEFAULT = '';
 // 佳明迁移数量配置
 export const GARMIN_MIGRATE_NUM_DEFAULT = '';
 export const GARMIN_MIGRATE_START_DEFAULT = '';
