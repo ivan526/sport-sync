@@ -28,11 +28,16 @@ export const getGaminGlobalClient = async (): Promise<GarminClientType> => {
     const GCClient = new GarminConnect();
 
     try {
+        console.log('----1----');
         await initDB();
 
+        console.log('----2----');
         const currentSession = await getSessionFromDB('GLOBAL');
+        
+        console.log('----3----');
         if (!currentSession) {
             await GCClient.login(GARMIN_GLOBAL_USERNAME, GARMIN_GLOBAL_PASSWORD);
+            console.log('----4----');
             await saveSessionToDB('GLOBAL', GCClient.sessionJson);
         } else {
             //  Wrap error message in GCClient, prevent terminate in github actions.
