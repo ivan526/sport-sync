@@ -4,8 +4,13 @@
 name: Node.js CI
 
 on:
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+  schedule:
+  #  每10分钟检查一次
+    - cron: "*/10 * * * *"
+  push:
+    branches:
+      - main
 
 jobs:
   build:
