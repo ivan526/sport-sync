@@ -5,7 +5,7 @@ import { Database, open } from 'sqlite';
 const CryptoJS = require('crypto-js');
 
 const GARMIN_USERNAME = process.env.GARMIN_USERNAME ?? GARMIN_USERNAME_DEFAULT;
-const AESKEY = process.env.AESKEY ?? AESKEY_DEFAULT;
+const AESKEY = process.env.AESKEY ?? 'Huawwwwwsdf';
 
 export const initDB = async () => {
     const db = await getDB();
@@ -19,7 +19,7 @@ export const initDB = async () => {
 
 export const getDB = async () => {
     return await open({
-        filename: DB_FILE_PATH,
+        filename: './db/garmin.db',
         driver: sqlite3.Database,
     });
 };
