@@ -46,19 +46,7 @@ export const updateSessionToDB = async (type: 'CN' | 'GLOBAL', session: Record<s
 };
 
 export const getSessionFromDB = async (type: 'CN' | 'GLOBAL'): Promise<Record<string, any> | undefined> => {
-    const db = await getDB();
-    const queryResult = await db.get(
-        'SELECT session FROM garmin_session WHERE user = ? AND region = ? ',
-        GARMIN_USERNAME, type,
-    );
-    if (!queryResult) {
-        return undefined;
-    }
-    console.log('-----debug-------');
-    console.log(queryResult);
-    const encryptedSessionStr = queryResult?.session;
-    // return {}
-    return decryptSession(encryptedSessionStr);
+     return undefined;
 };
 
 export const encryptSession = (session: Record<string, any>): string => {
