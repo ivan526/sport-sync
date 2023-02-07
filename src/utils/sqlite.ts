@@ -18,7 +18,7 @@ export const initDB = async () => {
 };
 
 export const getDB = async () => {  
-    console.log(DB_FILE_PATH);
+    console.log('---getDB---');
     return await open({
         filename: DB_FILE_PATH,
         driver: sqlite3.Database,
