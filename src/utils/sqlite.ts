@@ -54,6 +54,8 @@ export const getSessionFromDB = async (type: 'CN' | 'GLOBAL'): Promise<Record<st
     if (!queryResult) {
         return undefined;
     }
+    console.log('-----debug-------');
+    console.log(queryResult);
     const encryptedSessionStr = queryResult?.session;
     // return {}
     return decryptSession(encryptedSessionStr);
