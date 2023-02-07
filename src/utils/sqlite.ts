@@ -20,7 +20,7 @@ export const initDB = async () => {
 export const getDB = async () => {  
     console.log('---getDB---');
     return await open({
-        filename: DB_FILE_PATH,
+        filename: './db/garmin.db',
         driver: sqlite3.Database,
     });
 
