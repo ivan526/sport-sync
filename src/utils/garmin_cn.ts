@@ -92,7 +92,9 @@ export const migrateGarminCN2GarminGlobal = async (count = 200) => {
 };
 
 export const syncGarminCN2GarminGlobal = async () => {
+    console.log('start sync');
     const clientCN = await getGaminCNClient();
+    console.log('getGaminGlobalClient');
     const clientGlobal = await getGaminGlobalClient();
 
     let cnActs = await clientCN.getActivities(0, 10);
@@ -113,6 +115,7 @@ export const syncGarminCN2GarminGlobal = async () => {
                 const filePath = await downloadGarminActivity(cnAct.activityId, clientCN);
                 // 上传到佳明国际区
                 console.log(`本次开始向国际区上传第 ${actualNewActivityCount} 条数据，【 ${cnAct.activityName} 】，开始于 【 ${cnAct.startTimeLocal} 】，活动ID: 【 ${cnAct.activityId} 】`);
+                console.log('start upload');
                 await uploadGarminActivity(filePath, clientGlobal);
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 actualNewActivityCount++;
