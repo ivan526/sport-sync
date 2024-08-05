@@ -28,7 +28,7 @@ export const getGaminGlobalClient = async (): Promise<GarminClientType> => {
     const GCClient = new GarminConnect({username: GARMIN_GLOBAL_USERNAME, password: GARMIN_GLOBAL_PASSWORD});
 
     try {
-        console.log('----1----' + GARMIN_GLOBAL_USERNAME);
+        console.log('----1111----' + GARMIN_GLOBAL_USERNAME);
         await initDB();
 
         console.log('----2----');
