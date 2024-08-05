@@ -25,10 +25,10 @@ export const getGaminGlobalClient = async (): Promise<GarminClientType> => {
         return Promise.reject(errMsg);
     }
 
-    const GCClient = new GarminConnect();
+    const GCClient = new GarminConnect({username: GARMIN_GLOBAL_USERNAME, password: GARMIN_GLOBAL_PASSWORD});
 
     try {
-        console.log('----1----');
+        console.log('----1----' + GARMIN_GLOBAL_USERNAME);
         await initDB();
 
         console.log('----2----');
@@ -36,14 +36,15 @@ export const getGaminGlobalClient = async (): Promise<GarminClientType> => {
         
         console.log('----3----');
         if (!currentSession) {
-            await GCClient.login(GARMIN_GLOBAL_USERNAME, GARMIN_GLOBAL_PASSWORD);
+            await GCClient.login();
+            await saveSessionToDB('GLOBAL', GCClient.exportToken());
             console.log('----4----');
-            await saveSessionToDB('GLOBAL', GCClient.sessionJson);
+           
         } else {
             //  Wrap error message in GCClient, prevent terminate in github actions.
             try {
                 console.log('GarminGlobal: login by saved session');
-                await GCClient.restore(currentSession);
+                await GCClient.loadToken(currentSession.oauth1, currentSession.oauth2);
                 // await GCClient.restoreOrLogin(currentSession, GARMIN_GLOBAL_USERNAME, GARMIN_GLOBAL_PASSWORD);
 
             } catch (e) {
@@ -51,17 +52,17 @@ export const getGaminGlobalClient = async (): Promise<GarminClientType> => {
                 console.log('Warn: renew GarminGlobal session..');
                 await GCClient.login(GARMIN_GLOBAL_USERNAME, GARMIN_GLOBAL_PASSWORD);
                 await updateSessionToDB('GLOBAL', GCClient.sessionJson);
-
             }
 
         }
-        const userInfo = await GCClient.getUserInfo();
-        const { username, emailAddress, locale } = userInfo;
-        if (!username) {
+       const userInfo = await GCClient.getUserProfile();
+        const { fullName, userName: emailAddress, location } = userInfo;
+        if (!emailAddress) {
             throw Error('佳明国际区登录失败，请检查填入的账号密码或您的网络环境')
         }
-        console.log('Garmin userInfo global', { username, emailAddress, locale });
+        console.log('Garmin userInfo global', { fullName, emailAddress, location });
         return GCClient;
+
     } catch (err) {
         console.error(err);
         core.setFailed(err);
